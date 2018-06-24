@@ -1,0 +1,33 @@
+# defaults file for php-cli-ondrej
+---
+php_cli_ondrej_version: 5.6
+
+php_cli_ondrej_install: []
+
+php_cli_ondrej_update_alternatives: true
+
+php_cli_ondrej_precision: 14
+php_cli_ondrej_serialize_precision: "{{ -1 if (php_cli_ondrej_version | version_compare('7.1', '>=')) else 17 }}"
+php_cli_ondrej_disable_functions: []
+php_cli_ondrej_max_execution_time: 0
+php_cli_ondrej_memory_limit: -1
+php_cli_ondrej_error_reporting: 'E_ALL & ~E_DEPRECATED & ~E_STRICT'
+
+php_cli_ondrej_mods_present:
+  - name: json
+  - name: xml
+  - name: readline
+  - name: mysql
+  - name: memcache
+  - name: memcached
+  - name: msgpack
+  - name: mbstring
+  - name: mcrypt
+  - name: gd
+  - name: curl
+php_cli_ondrej_mods_present_names: "{{ php_cli_ondrej_mods_present | map(attribute='name') | list }}"
+php_cli_ondrej_mods_present_disabled_names: "{{ php_cli_ondrej_mods_present | selectattr('state', 'defined') | selectattr('state', 'equalto', 'disabled') | map(attribute='name') | list }}"
+
+php_cli_ondrej_mods_absent:
+  - name: opcache
+php_cli_ondrej_mods_absent_names: "{{ php_cli_ondrej_mods_absent | map(attribute='name') | list }}"
