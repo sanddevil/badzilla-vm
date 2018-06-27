@@ -55,3 +55,6 @@
         - mariadb-client
         - mariadb-server
 
+    - role: geerlingguy.composer
+      composer_keep_updated: true
+

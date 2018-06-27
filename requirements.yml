@@ -11,4 +11,7 @@
   version: 2.9.0
 
 - src: geerlingguy.memcached
-  version: 1.0.8 
+  version: 1.0.8
+
+- src: geerlingguy.composer
+  version: 1.7.0 
