@@ -6,3 +6,7 @@
   version: 2.6.0
 
 - src: TroodoNmike.nginx-conf
+
+- src: geerlingguy.mysql
+  version: 2.9.0
+  
