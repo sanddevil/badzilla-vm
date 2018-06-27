@@ -48,6 +48,7 @@
 
     - role: geerlingguy.nginx
     - role: TroodoNmike.nginx-conf
+    - role: geerlingguy.memcached
 
     - role: geerlingguy.mysql
       mysql_packages:
