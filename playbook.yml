@@ -7,14 +7,22 @@
 
   roles:
 
-    # - role: Oefenweb.php-cli-ondrej
-    #   php_cli_ondrej_version: 7.2
-    #   php_cli_ondrej_update_alternatives: true
-    #   php_cli_ondrej_mods_absent:
-    #     -  mcrypt
-    #   php_cli_ondrej_install:
-    #     -  php7.2-xdebug
-    #     -  php7.2-fpm 
+    - role: Oefenweb.php-cli-ondrej
+      php_cli_ondrej_version: 7.2
+      php_cli_ondrej_update_alternatives: true
+      php_cli_ondrej_mods_present:
+        - name: json
+        - name: xml
+        - name: readline
+        - name: mysql
+        - name: memcached
+        - name: msgpack
+        - name: mbstring
+        - name: gd
+        - name: curl
+      php_cli_ondrej_install:
+        -  php7.2-xdebug
+        -  php7.2-fpm 
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 7.1
