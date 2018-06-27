@@ -7,6 +7,15 @@
 
   roles:
 
+    # - role: Oefenweb.php-cli-ondrej
+    #   php_cli_ondrej_version: 7.2
+    #   php_cli_ondrej_update_alternatives: true
+    #   php_cli_ondrej_mods_absent:
+    #     -  mcrypt
+    #   php_cli_ondrej_install:
+    #     -  php7.2-xdebug
+    #     -  php7.2-fpm 
+
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 7.1
       php_cli_ondrej_update_alternatives: true   
@@ -26,4 +35,9 @@
       php_cli_ondrej_update_alternatives: true
       php_cli_ondrej_install:
         -  php5.6-xdebug 
-        -  php5.6-fpm      
+        -  php5.6-fpm
+
+
+
+    - role: geerlingguy.nginx
+    

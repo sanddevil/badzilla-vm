@@ -1,3 +1,6 @@
 ---
 - src: Oefenweb.php-cli-ondrej
   version: v2.2.3
+
+- src: geerlingguy.nginx
+  version: 2.6.0
