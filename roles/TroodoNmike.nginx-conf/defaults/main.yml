@@ -1,0 +1,5 @@
+nginx_conf_default_path: /etc/nginx/conf.d
+nginx_conf_default_template: template-symfony2.conf.j2
+
+# check documentation for nging_conf_sites
+nginx_conf_sites: []

@@ -4,3 +4,5 @@
 
 - src: geerlingguy.nginx
   version: 2.6.0
+
+- src: TroodoNmike.nginx-conf

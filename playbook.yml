@@ -40,4 +40,5 @@
 
 
     - role: geerlingguy.nginx
-    
+
+    - role: TroodoNmike.nginx-conf

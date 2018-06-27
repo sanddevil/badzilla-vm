@@ -1,0 +1,17 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: Michal K
+  description: Easy to use website templates with Nginx
+  company: NA
+  license: license (GPLv2, CC-BY, etc)
+  min_ansible_version: 1.8
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+  galaxy_tags:
+    - nginx
+    - conf
+    - web
