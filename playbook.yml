@@ -49,6 +49,7 @@
     - role: geerlingguy.nginx
     - role: TroodoNmike.nginx-conf
     - role: geerlingguy.memcached
+    - role: geerlingguy.nodejs
 
     - role: geerlingguy.mysql
       mysql_packages:
@@ -57,4 +58,5 @@
 
     - role: geerlingguy.composer
       composer_keep_updated: true
+
 
