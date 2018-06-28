@@ -59,4 +59,11 @@
     - role: geerlingguy.composer
       composer_keep_updated: true
 
+    # See https://hogarthdigital.atlassian.net/wiki/spaces/HD/pages/459833379/Lando+Proof+of+Concept 
+    # on how to use drush on non-composer Drupal projects  
+    - role: geerlingguy.drush
+      drush_launcher_install: yes
+      drush_launcher_version: "0.5.1"
+
+
 
