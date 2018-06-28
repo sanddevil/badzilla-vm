@@ -28,21 +28,22 @@
       php_cli_ondrej_version: 7.1
       php_cli_ondrej_update_alternatives: true   
       php_cli_ondrej_install:
-        -  php7.1-xdebug
+        -  php7.1-xdebug   
         -  php7.1-fpm   
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 7.0
       php_cli_ondrej_update_alternatives: true  
       php_cli_ondrej_install:
-        -  php7.0-xdebug   
+        -  php7.0-xdebug    
         -  php7.0-fpm    
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 5.6
       php_cli_ondrej_update_alternatives: true
       php_cli_ondrej_install:
-        -  php5.6-xdebug 
+        -  php5.6-xdebug
+        -  php5.6-xhprof        
         -  php5.6-fpm
 
 
