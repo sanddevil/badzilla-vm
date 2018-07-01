@@ -49,6 +49,14 @@
 
     - role: geerlingguy.nginx
     - role: TroodoNmike.nginx-conf
+      nginx_conf_default_path: /etc/nginx/sites-available
+      nginx_conf_sites:
+        web1:
+          file_name: sites-external-api.conf       # field required
+          template_params:
+            server_name: external-api.mlp.dev      # field required
+            root: /var/www/external-api/web        # field required
+
     - role: geerlingguy.memcached
     - role: geerlingguy.nodejs
 
@@ -65,6 +73,26 @@
     - role: geerlingguy.drush
       drush_launcher_install: yes
       drush_launcher_version: "0.5.1"
+
+
+  tasks: 
+
+    # Set symlinks to nginx sites-available directory
+    - name: Get a list of all vhosts
+      find:
+        paths: /etc/nginx/sites-available
+        patterns: "*.conf"
+        file_type: file
+      register: find
+
+    - name: Apply symlinks in sites-enabled
+      file:
+        dest: /etc/nginx/sites-enabled/{{ item.path | basename }}
+        src: "{{ item.path }}"
+        state: link
+        force: yes
+      with_items: "{{ find.files }}"
+
 
 
 
