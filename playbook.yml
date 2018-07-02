@@ -52,10 +52,12 @@
       nginx_conf_default_path: /etc/nginx/sites-available
       nginx_conf_sites:
         web1:
-          file_name: sites-external-api.conf       # field required
+          file_name: meedjum.conf       # field required
+          template_name: template-drupal8.conf.j2
           template_params:
-            server_name: external-api.mlp.dev      # field required
-            root: /var/www/external-api/web        # field required
+            server_name: meedjum.test      # field required
+            root: /var/www/html/meedjum/docroot    # field required
+            php_version: 5.6
 
     - role: geerlingguy.memcached
     - role: geerlingguy.nodejs
