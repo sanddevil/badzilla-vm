@@ -50,6 +50,7 @@
     - role: geerlingguy.nginx
     - role: TroodoNmike.nginx-conf
       nginx_conf_default_path: /etc/nginx/sites-available
+      nginx_conf_default_port: 80
       nginx_conf_sites:
         web1:
           file_name: meedjum.conf       # field required

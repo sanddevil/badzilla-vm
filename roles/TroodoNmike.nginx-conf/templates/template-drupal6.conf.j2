@@ -1,4 +1,5 @@
 server {
+    listen                *:{{ item.value.template_params.port | default(nginx_conf_default_port) }};
     server_name {{ item.value.template_params.server_name }};
     root {{ item.value.template_params.root }}; ## <-- Your only path reference.
 
