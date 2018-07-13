@@ -1,18 +1,60 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require_relative 'vagrant'
+
+# Absolute paths on the host machine.
+host_badzillavm_dir = File.dirname(File.expand_path(__FILE__))
+host_project_dir = ENV['BADZILLAVM_PROJECT_ROOT'] || host_badzillavm_dir
+host_config_dir = ENV['BADZILLAVM_CONFIG_DIR'] ? "#{host_project_dir}/#{ENV['BADZILLAVM_CONFIG_DIR']}" : host_project_dir
+
+# Absolute paths on the guest machine.
+guest_project_dir = '/vagrant'
+guest_badzillavm_dir = ENV['BADZILLAVM_DIR'] ? "/vagrant/#{ENV['BADZILLAVM_DIR']}" : guest_project_dir
+guest_config_dir = ENV['BADZILLAVM_CONFIG_DIR'] ? "/vagrant/#{ENV['BADZILLAVM_CONFIG_DIR']}" : guest_project_dir
+
+badzillavm_env = ENV['BADZILLAVM_ENV'] || 'vagrant'
+
+default_config_file = "#{host_badzillavm_dir}/default.config.yml"
+unless File.exist?(default_config_file)
+  raise_message "Configuration file not found! Expected in #{default_config_file}"
+end
+
+vconfig = load_config([
+  default_config_file,
+  "#{host_config_dir}/config.yml",
+  "#{host_config_dir}/#{badzillavm_env}.config.yml",
+  "#{host_config_dir}/local.config.yml"
+])
+
+provisioner = vconfig['force_ansible_local'] ? :ansible_local : vagrant_provisioner
+if provisioner == :ansible
+  playbook = "#{host_badzillavm_dir}/playbook.yml"
+  config_dir = host_config_dir
+
+  # Verify Ansible version requirement.
+  require_ansible_version ">= #{vconfig['badzillavm_ansible_version_min']}"
+else
+  playbook = "#{guest_badzillavm_dir}/playbook.yml"
+  config_dir = guest_config_dir
+end
+
+# Verify Vagrant version requirement.
+Vagrant.require_version ">= #{vconfig['badzillavm_vagrant_version_min']}"
+
+ensure_plugins(vconfig['vagrant_plugins'])
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
+  # Set the name of the VM. See: http://stackoverflow.com/a/17864388/100134
+  config.vm.define vconfig['vagrant_machine_name']
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "geerlingguy/ubuntu1604"
+  config.vm.box = vconfig['vagrant_box']
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
