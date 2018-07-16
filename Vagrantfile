@@ -97,19 +97,36 @@ Vagrant.configure("2") do |config|
   end
 
   # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
-  #
-  # View the documentation for the provider you are using for more
-  # information on available options.
+  # VMware Fusion.
+  config.vm.provider :vmware_fusion do |v, override|
+    # HGFS kernel module currently doesn't load correctly for native shares.
+    override.vm.synced_folder host_project_dir, '/vagrant', type: 'nfs'
+
+    v.gui = vconfig['vagrant_gui']
+    v.vmx['memsize'] = vconfig['vagrant_memory']
+    v.vmx['numvcpus'] = vconfig['vagrant_cpus']
+  end
+
+  # VirtualBox.
+  config.vm.provider :virtualbox do |v|
+    v.linked_clone = true
+    v.name = vconfig['vagrant_hostname']
+    v.memory = vconfig['vagrant_memory']
+    v.cpus = vconfig['vagrant_cpus']
+    v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+    v.customize ['modifyvm', :id, '--ioapic', 'on']
+    v.gui = vconfig['vagrant_gui']
+  end
+
+  # Parallels.
+  config.vm.provider :parallels do |p, override|
+    override.vm.box = vconfig['vagrant_box']
+    p.name = vconfig['vagrant_hostname']
+    p.memory = vconfig['vagrant_memory']
+    p.cpus = vconfig['vagrant_cpus']
+    p.update_guest_tools = true
+  end
+
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
