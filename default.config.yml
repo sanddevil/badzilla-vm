@@ -6,13 +6,12 @@ vagrant_user: vagrant
 vagrant_synced_folder_default_type: nfs
 vagrant_gui: false
 
-# If you need to run multiple instances of Drupal VM, set a unique hostname,
+# If you need to run multiple instances of Badzilla VM, set a unique hostname,
 # machine name, and IP address for each instance.
 vagrant_hostname: yoursite.test
 vagrant_machine_name: badzilla-vm
 vagrant_ip: 192.168.77.77
 
-# Allow Drupal VM to be accessed via a public network interface on your host.
 # Vagrant boxes are insecure by default, so be careful. You've been warned!
 # See: https://docs.vagrantup.com/v2/networking/public_network.html
 vagrant_public_ip: ""
@@ -21,9 +20,6 @@ vagrant_public_ip: ""
 # a 'type' of [nfs|rsync|smb] (leave empty for slow native shares). See
 # http://docs.drupalvm.com/en/latest/getting-started/syncing-folders/ for more.
 vagrant_synced_folders:
-  # The first synced folder will be used for the default Drupal installation, if
-  # any of the build_* settings are 'true'. By default the folder is set to
-  # the drupal-vm folder.
   - local_path: .
     destination: /var/www/html
     type: nfs
