@@ -41,3 +41,20 @@ badzillavm_ansible_version_min: '2.4'
 # Force use of ansible_local provisioner, even if Ansible is installed on host.
 force_ansible_local: false
 
+# Add nginx virtual hosts
+nginx_conf_sites:
+  web1:
+    file_name: meedjum.conf 
+    template_name: template-drupal8.conf.j2
+    template_params:
+      server_name: meedjum.test      
+      root: /var/www/html/meedjum/docroot    
+      php_version: 5.6
+  web2:
+    file_name: web2.conf       
+    template_name: template-drupal7.conf.j2
+    template_params:
+      server_name: web2.test      
+      root: /var/www/html/meedjum/docroot    
+      php_version: 7.0
+

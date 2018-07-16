@@ -99,6 +99,14 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with Ansible playbook
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yml"
+    ansible.extra_vars = {
+      config_dir: config_dir,
+      badzillavm_env: badzillavm_env
+    }
+    ansible.raw_arguments = Shellwords.shellsplit(ENV['BADZILLAVM_ANSIBLE_ARGS']) if ENV['BADZILLAVM_ANSIBLE_ARGS']
+    ansible.tags = ENV['BADZILLAVM_ANSIBLE_TAGS']
+    # Use pip to get the latest Ansible version when using ansible_local.
+    provisioner == :ansible_local && ansible.install_mode = 'pip'
   end
 
   # Provider-specific configuration so you can fine-tune various

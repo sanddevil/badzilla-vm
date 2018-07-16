@@ -3,7 +3,8 @@
 - hosts: all
   become: yes
 
-
+  vars_files:
+    - default.config.yml
 
   roles:
 
@@ -51,14 +52,7 @@
     - role: TroodoNmike.nginx-conf
       nginx_conf_default_path: /etc/nginx/sites-available
       nginx_conf_default_port: 80
-      nginx_conf_sites:
-        web1:
-          file_name: meedjum.conf       # field required
-          template_name: template-drupal8.conf.j2
-          template_params:
-            server_name: meedjum.test      # field required
-            root: /var/www/html/meedjum/docroot    # field required
-            php_version: 5.6
+
 
     - role: geerlingguy.memcached
     - role: geerlingguy.nodejs
