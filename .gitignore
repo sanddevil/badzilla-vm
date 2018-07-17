@@ -1,6 +1,8 @@
 .vagrant/
 *.retry
 *.log
+config.yml
+local.config.yml
 # Ignore Mac DS_Store files
 .DS_Store
 

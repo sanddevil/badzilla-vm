@@ -4,7 +4,8 @@
   become: yes
 
   vars_files:
-    - default.config.yml
+    - [ "default.config.yml", "config.yml", "local.config.yml" ]
+
 
   roles:
 
