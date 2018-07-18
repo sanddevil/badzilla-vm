@@ -3,8 +3,11 @@
 - hosts: all
   become: yes
 
+  # *BUG* Currently the config.yml is needed and has to be created by the user
+  # Requires investigation - find a neater alternative
   vars_files:
-    - [ "default.config.yml", "config.yml", "local.config.yml" ]
+    - default.config.yml
+    - config.yml
 
 
   roles:
