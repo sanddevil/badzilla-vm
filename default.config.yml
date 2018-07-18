@@ -28,7 +28,7 @@ vagrant_gui: false
 
 # If you need to run multiple instances of Badzilla VM, set a unique hostname,
 # machine name, and IP address for each instance.
-vagrant_hostname: yoursite.test
+vagrant_hostname: your-dev-box
 vagrant_machine_name: badzilla-vm
 vagrant_ip: 192.168.77.77
 
