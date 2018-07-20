@@ -75,6 +75,9 @@
       drush_launcher_install: yes
       drush_launcher_version: "0.5.1"
 
+    # VMs are naturally unsafe places...
+    - role: geerlingguy.firewall    
+
 
   tasks: 
 
