@@ -10,6 +10,10 @@
     - config.yml
 
 
+  pre_tasks:
+    - include_tasks: "tasks/init-{{ ansible_os_family }}.yml"
+
+
   roles:
 
     - role: Oefenweb.php-cli-ondrej
