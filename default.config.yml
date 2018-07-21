@@ -45,6 +45,11 @@ vagrant_public_ip: ""
 #     type: nfs
 #     create: true
 
+# MySQL user
+mysql_user_home: /root
+mysql_user_name: drupal
+mysql_user_password: drupal
+
 # Memory and CPU to use for this VM.
 vagrant_memory: 2048
 vagrant_cpus: 1
