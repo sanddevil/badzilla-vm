@@ -90,6 +90,10 @@
     # VMs are naturally unsafe places...
     - role: geerlingguy.firewall
 
+    # Jenkins and its dependency, Java
+    - role: geerlingguy.java
+    - role: geerlingguy.jenkins
+
     # Pretty logs
     - role: geerlingguy.pimpmylog
       pimpmylog_install_dir: /opt/pimpmylog
