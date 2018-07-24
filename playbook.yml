@@ -95,7 +95,7 @@
       pimpmylog_install_dir: /opt/pimpmylog
 
     # Capture outgoing mail - needs daemonize
-    #- role: geerlingguy.daemonize 
+    - role: geerlingguy.daemonize 
 
 
   tasks: 
