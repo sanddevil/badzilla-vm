@@ -106,4 +106,7 @@ nginx_conf_sites:
 # Other nginx settings
 nginx_remove_default_vhost: true
 
+# PimpMyLog config - this should match your convention which in my case is /var/www/html/myvhost
+pimpmylog_install_dir: /var/www/html/pimpmylog
+
 

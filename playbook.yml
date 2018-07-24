@@ -60,6 +60,14 @@
     - role: TroodoNmike.nginx-conf
       nginx_conf_default_path: /etc/nginx/sites-available
       nginx_conf_default_port: 80
+      nginx_conf_sites:
+        pimpmylog:
+          file_name: pimpmylog.conf
+          template_name: template-php.conf.j2
+          template_params:
+            server_name: pimpmylog.test      
+            root: /var/www/html/pimpmylog
+            php_version: 7.1
 
 
     - role: geerlingguy.memcached
@@ -80,7 +88,9 @@
       drush_launcher_version: "0.5.1"
 
     # VMs are naturally unsafe places...
-    - role: geerlingguy.firewall    
+    - role: geerlingguy.firewall
+
+    - role: geerlingguy.pimpmylog 
 
 
   tasks: 
