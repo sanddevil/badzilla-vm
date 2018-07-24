@@ -26,4 +26,7 @@
   version: 2.4.0 
 
 - src: geerlingguy.pimpmylog
-  version: 1.0.2  
+  version: 1.0.2
+
+- src: geerlingguy.daemonize
+  version: 1.2.1
