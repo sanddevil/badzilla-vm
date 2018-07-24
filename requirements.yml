@@ -30,3 +30,6 @@
 
 - src: geerlingguy.daemonize
   version: 1.2.1
+
+- src: geerlingguy.mailhog
+  version: 2.1.4

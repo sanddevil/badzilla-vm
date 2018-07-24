@@ -96,6 +96,8 @@
 
     # Capture outgoing mail - needs daemonize
     - role: geerlingguy.daemonize 
+    - role: geerlingguy.mailhog
+      mailhog_install_dir: /opt/mailhog
 
 
   tasks: 
