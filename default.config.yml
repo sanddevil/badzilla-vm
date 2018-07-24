@@ -101,3 +101,7 @@ nginx_conf_sites:
 #     root: /var/www/html/site2/docroot    
 #     php_version: 7.0
 
+# Other nginx settings
+nginx_remove_default_vhost: true
+
+
