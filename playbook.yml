@@ -94,9 +94,10 @@
     - role: geerlingguy.java
     - role: geerlingguy.jenkins
 
-    # Pretty logs
+    # Pretty logs - this needs chmod 777 in install directory
     - role: geerlingguy.pimpmylog
       pimpmylog_install_dir: /opt/pimpmylog
+      pimpmylog_grant_all_privs: yes
 
     # Capture outgoing mail - needs daemonize
     - role: geerlingguy.daemonize 
