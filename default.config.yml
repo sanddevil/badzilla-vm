@@ -111,5 +111,8 @@ firewall_disable_ufw: true
 # Other nginx settings
 nginx_remove_default_vhost: true
 
+# set the timezone to what you need
+user_timezone: Europe/London
+
 
 

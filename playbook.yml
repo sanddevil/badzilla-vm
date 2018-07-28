@@ -164,6 +164,10 @@
         - /etc/php/7.2/cli/php.ini
         - /etc/php/7.2/fpm/php.ini  
 
+    - name: set timezone to default value
+      timezone:
+        name: "{{ user_timezone }}"
+
     # - name: debug the sites
     #   debug: 
     #     var: all_vhosts  
