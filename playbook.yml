@@ -28,7 +28,7 @@
 
     - name: Merge all the vhosts together
       set_fact: 
-        all_vhosts: "{{ [ user_vhosts_conf ] }}"
+        all_vhosts: "{{ [ user_vhosts_conf ] }} + {{ [ pimp_my_log_site ] }}"
 
 
   roles:
