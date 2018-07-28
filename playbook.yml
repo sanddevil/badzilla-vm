@@ -9,9 +9,26 @@
     - default.config.yml
     - config.yml
 
+  vars:
+
+    - name: Set the nginx config for pimpmylog 
+      pimp_my_log_site:
+        pimpmylog:
+          file_name: pimpmylog.conf
+          template_name: template-php.conf.j2
+          template_params:
+            server_name: pimpmylog.test      
+            root: /opt/pimpmylog
+            php_version: 7.1
+
 
   pre_tasks:
+
     - include_tasks: "tasks/init-{{ ansible_os_family }}.yml"
+
+    - name: Merge all the vhosts together
+      set_fact: 
+        all_vhosts: "{{ [ user_vhosts_conf ] }} + {{ [ pimp_my_log_site ] }}"
 
 
   roles:
@@ -60,14 +77,7 @@
     - role: TroodoNmike.nginx-conf
       nginx_conf_default_path: /etc/nginx/sites-available
       nginx_conf_default_port: 80
-      nginx_conf_sites:
-        pimpmylog:
-          file_name: pimpmylog.conf
-          template_name: template-php.conf.j2
-          template_params:
-            server_name: pimpmylog.test      
-            root: /opt/pimpmylog
-            php_version: 7.1
+      nginx_conf_sites: "{{ all_vhosts }}"
 
 
     - role: geerlingguy.memcached
@@ -137,6 +147,10 @@
         - /etc/php/7.1/cli/php.ini
         - /etc/php/7.1/fpm/php.ini
         - /etc/php/7.2/cli/php.ini
-        - /etc/php/7.2/fpm/php.ini        
+        - /etc/php/7.2/fpm/php.ini  
+
+    # - name: debug the sites
+    #   debug: 
+    #     var: all_vhosts      
 
 
