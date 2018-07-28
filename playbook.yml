@@ -29,7 +29,12 @@
           template_params:
             server_name: adminer.test      
             root: /opt/adminer
-            php_version: 7.1        
+            php_version: 7.1
+
+    - name: Set the bash aliases
+      bash_aliases: 
+        - alias: switch-php
+          command: 'sudo update-alternatives --config php'     
 
 
   pre_tasks:
@@ -128,6 +133,10 @@
     - role: geerlingguy.adminer
       adminer_install_dir: /opt/adminer
       adminer_install_filename: index.php
+
+    # Bash aliases. Used primarily for switching CLI PHP versions
+    - role: igor_mukhin.bash_aliases
+      sudo: false
 
 
   tasks: 

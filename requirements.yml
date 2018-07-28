@@ -41,4 +41,7 @@
   version: 2.1.4  
 
 - src: geerlingguy.adminer
-  version: 1.2.0    
+  version: 1.2.0
+
+- src: igor_mukhin.bash_aliases
+  version: v1.1.0
