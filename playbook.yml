@@ -28,7 +28,7 @@
 
     - name: Merge all the vhosts together
       set_fact: 
-        all_vhosts: "{{ [ user_vhosts_conf ] }} + {{ [ pimp_my_log_site ] }}"
+        all_vhosts: "{{ [ user_vhosts_conf ] }}"
 
 
   roles:
@@ -151,6 +151,13 @@
 
     # - name: debug the sites
     #   debug: 
-    #     var: all_vhosts      
+    #     var: all_vhosts  
+
+  post_tasks:
+  
+    - name: Restart nginx to prevent connection refused bug
+      service:
+        name: nginx
+        state: restarted      
 
 
