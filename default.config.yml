@@ -9,7 +9,7 @@
 # config.yml
 # ================
 #
-# nginx_conf_sites:
+# user_vhosts_conf:
 #  web1:
 #    file_name: mysite.conf 
 #    template_name: template-drupal8.conf.j2
@@ -92,14 +92,14 @@ firewall_disable_firewalld: true
 firewall_disable_ufw: true
 
 # Add nginx virtual hosts
-nginx_conf_sites:
-  web1:
-    file_name: site1.conf 
-    template_name: template-drupal6.conf.j2
-    template_params:
-      server_name: site1.test      
-      root: /var/www/html/site1/docroot    
-      php_version: 5.6
+# user_vhosts_conf:
+#   web1:
+#     file_name: site1.conf 
+#     template_name: template-drupal6.conf.j2
+#     template_params:
+#       server_name: site1.test      
+#       root: /var/www/html/site1/docroot    
+#       php_version: 5.6
 # web2:
 #   file_name: site2.conf       
 #   template_name: template-drupal7.conf.j2
