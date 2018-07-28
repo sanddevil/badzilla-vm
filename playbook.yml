@@ -21,6 +21,16 @@
             root: /opt/pimpmylog
             php_version: 7.1
 
+    - name: Set the nginx config for adminer
+      adminer_site:
+        adminer:
+          file_name: adminer.conf
+          template_name: template-php.conf.j2
+          template_params:
+            server_name: adminer.test      
+            root: /opt/adminer
+            php_version: 7.1        
+
 
   pre_tasks:
 
@@ -28,7 +38,7 @@
 
     - name: Merge all the vhosts together
       set_fact: 
-        all_vhosts: "{{ [ user_vhosts_conf ] }} + {{ [ pimp_my_log_site ] }}"
+        all_vhosts: "{{ [ user_vhosts_conf ] }} + {{ [ pimp_my_log_site ] }} + {{ [ adminer_site ] }}"
 
 
   roles:
@@ -113,6 +123,11 @@
     - role: geerlingguy.daemonize 
     - role: geerlingguy.mailhog
       mailhog_install_dir: /opt/mailhog
+
+    # Adminer for those without access to Sequel Pro
+    - role: geerlingguy.adminer
+      adminer_install_dir: /opt/adminer
+      adminer_install_filename: index.php
 
 
   tasks: 
