@@ -11,6 +11,9 @@
 
   vars:
 
+    - name: Set the web server. Only nginx currently offered
+      badzillavm_webserver: nginx
+
     - name: Set the nginx config for pimpmylog 
       pimp_my_log_site:
         pimpmylog:
@@ -31,10 +34,31 @@
             root: /opt/adminer
             php_version: 7.1
 
+    - name: Set the nginx config for xhprof
+      xhprof_site:
+        xhprof:
+          file_name: xhprof.conf
+          template_name: template-php.conf.j2
+          template_params:
+            server_name: xhprof.test      
+            root: /usr/share/php-xhprof/html
+            php_version: 5.6           
+
     - name: Set the bash aliases
       bash_aliases: 
         - alias: switch-php
-          command: 'sudo update-alternatives --config php'     
+          command: 'sudo update-alternatives --config php'
+
+    - name: Dashboard settings
+      dashboard_install_dir: /opt/dashboard
+      dashboard_site:
+        dashboard:
+          file_name: dashboard.conf
+          template_name: template-php.conf.j2
+          template_params:
+            server_name: dashboard.test      
+            root: /opt/dashboard
+            php_version: 7.1
 
 
   pre_tasks:
@@ -43,7 +67,7 @@
 
     - name: Merge all the vhosts together
       set_fact: 
-        all_vhosts: "{{ [ user_vhosts_conf ] }} + {{ [ pimp_my_log_site ] }} + {{ [ adminer_site ] }}"
+        all_vhosts: "{{ [ user_vhosts_conf ] }} + {{ [ pimp_my_log_site ] }} + {{ [ adminer_site ] }} + {{ [ dashboard_site ] }} + {{ [ xhprof_site ] }}"
 
 
   roles:
@@ -176,6 +200,9 @@
     - name: set timezone to default value
       timezone:
         name: "{{ user_timezone }}"
+
+    - name: Create the dashboard
+      import_tasks: tasks/dashboard.yml    
 
     # - name: debug the sites
     #   debug: 
