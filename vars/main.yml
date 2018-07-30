@@ -27,4 +27,18 @@ _devtool_docroots:
     template_params:
       server_name: dashboard.test      
       root: /opt/dashboard
-      php_version: 7.1       
+      php_version: 7.1
+
+
+
+# Set the web server. Only nginx currently offered
+badzillavm_webserver: nginx
+      
+# Set the bash aliases
+bash_aliases: 
+  - alias: switch-php
+    command: 'sudo update-alternatives --config php'
+
+# Dashboard settings
+dashboard_install_dir: /opt/dashboard 
+         

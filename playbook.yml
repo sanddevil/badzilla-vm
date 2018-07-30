@@ -3,26 +3,11 @@
 - hosts: all
   become: yes
 
-  # *BUG* Currently the config.yml is needed and has to be created by the user
-  # Requires investigation - find a neater alternative
+  # *IMPORTANT* The user must create the config.yml file. See README.md
   vars_files:
     - vars/main.yml
     - default.config.yml
     - config.yml
-
-  vars:
-
-    - name: Set the web server. Only nginx currently offered
-      badzillavm_webserver: nginx
-          
-    - name: Set the bash aliases
-      bash_aliases: 
-        - alias: switch-php
-          command: 'sudo update-alternatives --config php'
-
-    - name: Dashboard settings
-      dashboard_install_dir: /opt/dashboard
-
 
 
   pre_tasks:
