@@ -67,7 +67,7 @@
       </ul>
     {%- endmacro -%}
 
-    {%- macro sectionSiteList() -%}
+    {%- macro sectionSiteList(vhosts) -%}
       <div class="table-responsive">
         <table class="table table-striped table-hover">
           <thead>
@@ -78,7 +78,7 @@
             </tr>
           </thead>
           <tbody>
-              {%- for hosts in user_vhosts_conf.itervalues() -%}
+              {%- for hosts in vhosts.itervalues() -%}
                 {%- for host in hosts.itervalues() -%}
                   {% if host.root is defined -%}
                     {% for single in host.server_name.split(' ') -%}
@@ -110,11 +110,22 @@
           <section class="panel panel-default">
             <div class="panel-heading">Your sites</div>
             <div class="panel-body">
-              {{ sectionSiteList() }}
+              {{ sectionSiteList(user_vhosts_conf) }}
             </div>
           </section>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <section class="panel panel-default">
+            <div class="panel-heading">Development tools</div>
+            <div class="panel-body">
+              {{ sectionSiteList(_devtool_docroots) }}
+            </div>
+          </section>
+        </div>
+      </div>      
 
 
  
