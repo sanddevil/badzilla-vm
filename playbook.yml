@@ -6,6 +6,7 @@
   # *BUG* Currently the config.yml is needed and has to be created by the user
   # Requires investigation - find a neater alternative
   vars_files:
+    - vars/main.yml
     - default.config.yml
     - config.yml
 
@@ -13,37 +14,7 @@
 
     - name: Set the web server. Only nginx currently offered
       badzillavm_webserver: nginx
-
-    - name: Set the nginx config for pimpmylog 
-      pimp_my_log_site:
-        pimpmylog:
-          file_name: pimpmylog.conf
-          template_name: template-php.conf.j2
-          template_params:
-            server_name: pimpmylog.test      
-            root: /opt/pimpmylog
-            php_version: 7.1
-
-    - name: Set the nginx config for adminer
-      adminer_site:
-        adminer:
-          file_name: adminer.conf
-          template_name: template-php.conf.j2
-          template_params:
-            server_name: adminer.test      
-            root: /opt/adminer
-            php_version: 7.1
-
-    - name: Set the nginx config for xhprof
-      xhprof_site:
-        xhprof:
-          file_name: xhprof.conf
-          template_name: template-php.conf.j2
-          template_params:
-            server_name: xhprof.test      
-            root: /usr/share/php-xhprof/html
-            php_version: 5.6           
-
+          
     - name: Set the bash aliases
       bash_aliases: 
         - alias: switch-php
@@ -51,14 +22,7 @@
 
     - name: Dashboard settings
       dashboard_install_dir: /opt/dashboard
-      dashboard_site:
-        dashboard:
-          file_name: dashboard.conf
-          template_name: template-php.conf.j2
-          template_params:
-            server_name: dashboard.test      
-            root: /opt/dashboard
-            php_version: 7.1
+
 
 
   pre_tasks:
@@ -67,7 +31,7 @@
 
     - name: Merge all the vhosts together
       set_fact: 
-        all_vhosts: "{{ [ user_vhosts_conf ] }} + {{ [ pimp_my_log_site ] }} + {{ [ adminer_site ] }} + {{ [ dashboard_site ] }} + {{ [ xhprof_site ] }}"
+        all_vhosts: "{{ [ user_vhosts_conf ] }} + {{ [ _devtool_docroots ] }}"
 
 
   roles:
