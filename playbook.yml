@@ -150,6 +150,11 @@
       timezone:
         name: "{{ user_timezone }}"
 
+    - name: patch .bashrc to customise the prompt
+      patch:
+        src: patches/bashrc.patch
+        dest: /home/vagrant/.bashrc   
+
     - name: Create the dashboard
       import_tasks: tasks/dashboard.yml    
 
