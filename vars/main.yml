@@ -41,4 +41,21 @@ bash_aliases:
 
 # Dashboard settings
 dashboard_install_dir: /opt/dashboard 
-         
+
+# PHP Version Settings for injecting into .ini files
+php5_6_cli:
+  memory_limit: -1
+php5_6_web:
+  memory_limit: 198M
+php7_0_cli:
+  memory_limit: -1
+php7_0_web:
+  memory_limit: 128M
+php7_1_cli:
+  memory_limit: -1
+php7_1_web:
+  memory_limit: 256M  
+php7_2_cli:
+  memory_limit: -1
+php7_2_web:
+  memory_limit: 512M 

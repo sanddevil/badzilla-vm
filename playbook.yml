@@ -40,21 +40,18 @@
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 7.1
-      php_cli_ondrej_update_alternatives: true   
       php_cli_ondrej_install:
         -  php7.1-xdebug   
         -  php7.1-fpm   
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 7.0
-      php_cli_ondrej_update_alternatives: true  
       php_cli_ondrej_install:
         -  php7.0-xdebug    
         -  php7.0-fpm    
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 5.6
-      php_cli_ondrej_update_alternatives: true
       php_cli_ondrej_install:
         -  php5.6-xdebug
         -  php5.6-xhprof        
@@ -130,21 +127,8 @@
         force: yes
       with_items: "{{ find.files }}"
 
-    - name: Set sendmail path in php.ini files
-      ini_file:
-        path: "{{ item }}"
-        section: "mail function"
-        option: sendmail_path
-        value: /opt/mailhog/mhsendmail
-      loop:
-        - /etc/php/5.6/cli/php.ini
-        - /etc/php/5.6/fpm/php.ini
-        - /etc/php/7.0/cli/php.ini
-        - /etc/php/7.0/fpm/php.ini
-        - /etc/php/7.1/cli/php.ini
-        - /etc/php/7.1/fpm/php.ini
-        - /etc/php/7.2/cli/php.ini
-        - /etc/php/7.2/fpm/php.ini  
+    - name: Inject PHP settings into relevant version ini files
+      include_tasks: tasks/php_ini.yml 
 
     - name: set timezone to default value
       timezone:
@@ -160,9 +144,15 @@
 
   post_tasks:
   
-    - name: Restart nginx to prevent connection refused bug
+    - name: Restart nginx / FPM to prevent connection refused bug and ini changes to take effect
       service:
-        name: nginx
-        state: restarted      
+        name: "{{ item }}"
+        state: restarted
+      loop:
+        - nginx
+        - php5.6-fpm
+        - php7.0-fpm
+        - php7.1-fpm
+        - php7.2-fpm
 
 
