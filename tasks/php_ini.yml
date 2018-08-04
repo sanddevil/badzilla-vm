@@ -18,58 +18,18 @@
     - /etc/php/7.2/fpm/php.ini 
 
 
-- name: php5.6 cli
+- name: memory_limit setting
   ini_file:
-    path: /etc/php/5.6/cli/php.ini
+    path: "{{ item.path }}"
     section: PHP
     option: memory_limit
-    value: "{{ php5_6_cli.memory_limit }}"
-
-- name: php5.6 web
-  ini_file:
-    path: /etc/php/5.6/fpm/php.ini
-    section: PHP
-    option: memory_limit
-    value: "{{ php5_6_web.memory_limit }}"
-
-- name: php7.0 cli
-  ini_file:
-    path: /etc/php/7.0/cli/php.ini
-    section: PHP
-    option: memory_limit
-    value: "{{ php7_0_cli.memory_limit }}"
-
-- name: php7.0 web
-  ini_file:
-    path: /etc/php/7.0/fpm/php.ini
-    section: PHP
-    option: memory_limit
-    value: "{{ php7_0_web.memory_limit }}"
-
-- name: php7.1 cli
-  ini_file:
-    path: /etc/php/7.1/cli/php.ini
-    section: PHP
-    option: memory_limit
-    value: "{{ php7_1_cli.memory_limit }}"
-
-- name: php7.1 web
-  ini_file:
-    path: /etc/php/7.1/fpm/php.ini
-    section: PHP
-    option: memory_limit
-    value: "{{ php7_1_web.memory_limit }}" 
-
-- name: php7.2 cli
-  ini_file:
-    path: /etc/php/7.2/cli/php.ini
-    section: PHP
-    option: memory_limit
-    value: "{{ php7_2_cli.memory_limit }}"
-
-- name: php7.2 web
-  ini_file:
-    path: /etc/php/7.2/fpm/php.ini
-    section: PHP
-    option: memory_limit
-    value: "{{ php7_2_web.memory_limit }}"            
+    value: "{{ item.value }}"
+  loop:
+    -  { path: "{{ php5_6_cli.path }}", value: "{{ php5_6_cli.memory_limit }}" }
+    -  { path: "{{ php5_6_web.path }}", value: "{{ php5_6_web.memory_limit }}" }
+    -  { path: "{{ php7_0_cli.path }}", value: "{{ php7_0_cli.memory_limit }}" }
+    -  { path: "{{ php7_0_web.path }}", value: "{{ php7_0_web.memory_limit }}" }
+    -  { path: "{{ php7_1_cli.path }}", value: "{{ php7_1_cli.memory_limit }}" }
+    -  { path: "{{ php7_1_web.path }}", value: "{{ php7_1_web.memory_limit }}" }
+    -  { path: "{{ php7_2_cli.path }}", value: "{{ php7_2_cli.memory_limit }}" }
+    -  { path: "{{ php7_2_web.path }}", value: "{{ php7_2_web.memory_limit }}" }       
