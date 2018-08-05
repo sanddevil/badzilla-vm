@@ -95,6 +95,22 @@
       </div>
     {%- endmacro -%}
 
+
+    {%- macro sectionHost(vhosts) -%}
+      {%- for hosts in vhosts.itervalues() -%}
+        {%- for host in hosts.itervalues() -%}
+          {% if host.root is defined -%}
+            {% for single in host.server_name.split(' ') -%}
+                <ul class="section-host">
+                  {{ vagrant_ip }} {{ single }} 
+                </ul>
+            {%- endfor -%}  
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    {%- endmacro -%}
+
+
     {%- macro sectionDevelopmentTools() -%}
     <div class="table-responsive">
       <table class="table">
@@ -342,7 +358,22 @@
             </div>
           </section>
         </div> 
-      </div>           
+      </div> 
+
+      <div class="row">
+        <div class="col-md-12">
+          <section class="panel panel-default">
+            <div class="panel-heading">/etc/hosts</div>
+              <div class="panel-body">
+                <section class="well small">
+                  {{ sectionHost(user_vhosts_conf) }}
+                  {{ sectionHost(_devtool_docroots) }}
+                </section>
+                <small>Unless you're using the <a href="https://github.com/cogitatio/vagrant-hostsupdater" target="_blank">vagrant-hostsupdater</a> or <a href="https://github.com/smdahlen/vagrant-hostmanager" target="_blank">vagrant-hostmanager</a> plugin, add the lines above to your host machine's hosts file.</small>
+              </div>
+          </section>
+        </div>
+      </div>            
 
  
     </div>
