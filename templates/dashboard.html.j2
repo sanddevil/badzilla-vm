@@ -95,6 +95,71 @@
       </div>
     {%- endmacro -%}
 
+    {%- macro sectionPhpInformation() -%}
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Version</th>
+              <th>ini file</th>
+              <th>Memory Limit</th>
+              <th>phpinfo()</th>
+            </tr>
+          </thead> 
+          <tbody>
+            <tr>
+                <td><code>5.6 CLI</code></td>
+                <td><code>{{ php5_6_cli.path }}</code></td>
+                <td><code>{{ php5_6_cli.memory_limit }}</code></td>
+                <td><code>n/a</code></td>
+            </tr>
+            <tr>
+                <td><code>5.6 Web</code></td>
+                <td><code>{{ php5_6_web.path }}</code></td>
+                <td><code>{{ php5_6_web.memory_limit }}</code></td>
+                <td><a href="/server-info.php" class="btn btn-success btn-xs" role="button">Open</a></td>
+            </tr>   
+            <tr>
+                <td><code>7.0 CLI</code></td>
+                <td><code>{{ php7_0_cli.path }}</code></td>
+                <td><code>{{ php7_0_cli.memory_limit }}</code></td>
+                <td><code>n/a</code></td>
+            </tr>
+            <tr>
+                <td><code>7.0 Web</code></td>
+                <td><code>{{ php7_0_web.path }}</code></td>
+                <td><code>{{ php7_0_web.memory_limit }}</code></td>
+                <td><a href="/server-info.php" class="btn btn-success btn-xs" role="button">Open</a></td>
+            </tr>
+            <tr>
+                <td><code>7.1 CLI</code></td>
+                <td><code>{{ php7_1_cli.path }}</code></td>
+                <td><code>{{ php7_1_cli.memory_limit }}</code></td>
+                <td><code>n/a</code></td>
+            </tr>
+            <tr>
+                <td><code>7.1 Web</code></td>
+                <td><code>{{ php7_1_web.path }}</code></td>
+                <td><code>{{ php7_1_web.memory_limit }}</code></td>
+                <td><a href="/server-info.php" class="btn btn-success btn-xs" role="button">Open</a></td>
+            </tr> 
+            <tr>
+                <td><code>7.2 CLI</code></td>
+                <td><code>{{ php7_2_cli.path }}</code></td>
+                <td><code>{{ php7_2_cli.memory_limit }}</code></td>
+                <td><code>n/a</code></td>
+            </tr>
+            <tr>
+                <td><code>7.2 Web</code></td>
+                <td><code>{{ php7_2_web.path }}</code></td>
+                <td><code>{{ php7_2_web.memory_limit }}</code></td>
+                <td><a href="/server-info.php" class="btn btn-success btn-xs" role="button">Open</a></td>
+            </tr>                              
+          </tbody>
+        </table>
+      </div>
+    {%- endmacro -%}    
+
     <div class="container">
 
       <div class="row">
@@ -128,7 +193,19 @@
             </div>
           </section>
         </div>
-      </div>      
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12">
+          <section class="panel panel-default">
+            <div class="panel-heading">PHP Versions</div>
+            <div class="panel-body">
+              {{ sectionPhpInformation() }}
+            </div>
+          </section>
+        </div>
+      </div>           
 
 
  
