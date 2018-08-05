@@ -27,7 +27,7 @@ _devtool_docroots:
     template_params:
       server_name: dashboard.test      
       root: /opt/dashboard
-      php_version: 7.1
+      php_version: 7.1  
 
 
 
