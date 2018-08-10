@@ -84,9 +84,7 @@
               {%- for hosts in vhosts.itervalues() -%}
                 {%- for host in hosts.itervalues() -%}
                   {% if host.root is defined -%}
-                    {% for single in host.server_name.split(' ') -%}
-                      {{ printSite(single, host.root, host.php_version) }}
-                    {%- endfor -%}  
+                    {{ printSite(host.server_name, host.root, host.php_version) }}
                   {%- endif -%}
                 {%- endfor -%}
               {%- endfor -%}
@@ -100,11 +98,9 @@
       {%- for hosts in vhosts.itervalues() -%}
         {%- for host in hosts.itervalues() -%}
           {% if host.root is defined -%}
-            {% for single in host.server_name.split(' ') -%}
-                <ul class="section-host">
-                  {{ vagrant_ip }} {{ single }} 
-                </ul>
-            {%- endfor -%}  
+            <ul class="section-host">
+              {{ vagrant_ip }} {{ host.server_name }} 
+            </ul>
           {%- endif -%}
         {%- endfor -%}
       {%- endfor -%}
