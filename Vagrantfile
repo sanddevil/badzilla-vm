@@ -79,6 +79,16 @@ Vagrant.configure("2") do |config|
   # Display an introduction message after `vagrant up` and `vagrant provision`.
   config.vm.post_up_message = vconfig.fetch('vagrant_post_up_message', get_default_post_up_message(vconfig))
 
+  # If a hostsfile manager plugin is installed, add all server names as aliases.
+  aliases = get_vhost_aliases(vconfig) - [config.vm.hostname]
+  if Vagrant.has_plugin?('vagrant-hostsupdater')
+    config.hostsupdater.aliases = aliases
+  elsif Vagrant.has_plugin?('vagrant-hostmanager')
+    config.hostmanager.enabled = true
+    config.hostmanager.manage_host = true
+    config.hostmanager.aliases = aliases
+  end
+
   # Synced folders.
   vconfig['vagrant_synced_folders'].each do |synced_folder|
     options = {

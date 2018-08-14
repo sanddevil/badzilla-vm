@@ -99,6 +99,32 @@ def ensure_plugins(plugins)
   exit
 end
 
+def get_nginx_vhosts(vhosts)
+  aliases = []
+  vhosts.each do |host, value|
+    aliases.push(value["template_params"]["server_name"])
+  end
+  aliases
+end
+
+# Return a list of all virtualhost server names and aliases from a config hash.
+def get_vhost_aliases(vconfig)
+
+  # Get user defined vhosts
+  aliases = get_nginx_vhosts(vconfig['user_vhosts_conf'])
+
+  # Get devtools vhosts from _devtool_docroots held in vars/main.yml
+  main_yml = YAML.load_file('vars/main.yml')
+
+  # add to what we've already got
+  aliases += get_nginx_vhosts(main_yml['_devtool_docroots'])
+
+  aliases = aliases.uniq - [vconfig['vagrant_ip']]
+
+  # Remove wildcard subdomains.
+  aliases.delete_if { |vhost| vhost.include?('*') }
+end
+
 
 # Return a default post_up_message.
 def get_default_post_up_message(vconfig)
