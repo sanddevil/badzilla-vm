@@ -140,7 +140,16 @@
         dest: /home/vagrant/.bashrc  
 
     - name: Create the dashboard
-      import_tasks: tasks/dashboard.yml    
+      import_tasks: tasks/dashboard.yml
+
+    - name: Check if xhprof library created with wrong directory name
+      stat:    
+        path: /usr/share/php-xhprof/lib
+      register: stat_result
+
+    - name: If xhprof library name wrong then mv to correct name
+      command: mv /usr/share/php-xhprof/lib /usr/share/php-xhprof/xhprof_lib
+      when: stat_result.stat.exists == True
 
   post_tasks:
   

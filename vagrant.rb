@@ -128,7 +128,7 @@ end
 
 # Return a default post_up_message.
 def get_default_post_up_message(vconfig)
-  'Your Badzilla VM Vagrant box is ready to use!'\
+  'Your BadzillaVM Vagrant box is ready to use!'\
     "\n* You can SSH into your machine with `vagrant ssh`."\
-    "\n* Find out more in the Badzilla VM documentation at http://badzilla.co.uk"
+    "\n* Find out more in the BadzillaVM documentation at http://badzilla.co.uk"
 end
