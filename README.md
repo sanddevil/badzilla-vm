@@ -1,3 +1,5 @@
+![BadzillaVM Logo](http://badzilla.co.uk/sites/default/files/BadzillaVMLogo.png)
+
 ## [BadzillaVm](http://badzilla.co.uk/badzillavm)
 
 BadzillaVM is a lightweight VM for Drupal, based heavily on Geerlingguy's DrupalVM, and just like his, built with Ansible.
