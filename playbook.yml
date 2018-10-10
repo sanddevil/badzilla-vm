@@ -36,19 +36,22 @@
         - name: curl
       php_cli_ondrej_install:
         -  php7.2-xdebug
-        -  php7.2-fpm 
+        -  php7.2-fpm
+        -  php7.2-ssh2
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 7.1
       php_cli_ondrej_install:
         -  php7.1-xdebug   
-        -  php7.1-fpm   
+        -  php7.1-fpm
+        -  php7.1-ssh2 
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 7.0
       php_cli_ondrej_install:
         -  php7.0-xdebug    
-        -  php7.0-fpm    
+        -  php7.0-fpm
+        -  php7.0-ssh2  
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 5.6
@@ -56,6 +59,7 @@
         -  php5.6-xdebug
         -  php5.6-xhprof        
         -  php5.6-fpm
+        -  php5.6-ssh2
 
 
     - role: geerlingguy.nginx
@@ -76,7 +80,7 @@
     - role: geerlingguy.composer
       composer_keep_updated: true
 
-    # See https://github.com/drush-ops/drush-launcher/issues/33 
+    # See http://badzilla.co.uk/drupal-7-drush-loader-and-non-composer-project
     # on how to use drush on non-composer Drupal projects  
     - role: geerlingguy.drush
       drush_launcher_install: yes
