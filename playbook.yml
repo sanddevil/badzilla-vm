@@ -34,7 +34,6 @@
         - name: mbstring
         - name: gd
         - name: curl
-        - name: bcmath
       php_cli_ondrej_install:
         -  php7.2-xdebug
         -  php7.2-fpm
