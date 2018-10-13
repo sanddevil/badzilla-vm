@@ -34,24 +34,28 @@
         - name: mbstring
         - name: gd
         - name: curl
+        - name: bcmath
       php_cli_ondrej_install:
         -  php7.2-xdebug
         -  php7.2-fpm
         -  php7.2-ssh2
+        -  php7.2-bcmath 
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 7.1
       php_cli_ondrej_install:
         -  php7.1-xdebug   
         -  php7.1-fpm
-        -  php7.1-ssh2 
+        -  php7.1-ssh2
+        -  php7.1-bcmath 
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 7.0
       php_cli_ondrej_install:
         -  php7.0-xdebug    
         -  php7.0-fpm
-        -  php7.0-ssh2  
+        -  php7.0-ssh2 
+        -  php7.0-bcmath 
 
     - role: Oefenweb.php-cli-ondrej
       php_cli_ondrej_version: 5.6
@@ -60,6 +64,7 @@
         -  php5.6-xhprof        
         -  php5.6-fpm
         -  php5.6-ssh2
+        -  php5.6-bcmath 
 
 
     - role: geerlingguy.nginx
