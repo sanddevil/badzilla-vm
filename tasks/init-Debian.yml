@@ -12,3 +12,4 @@
     - sudo
     - unzip
     - make
+    - ssl-cert
