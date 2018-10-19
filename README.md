@@ -81,7 +81,17 @@ A typical `config.yml` configuration will look similar to this:
         template_params:
           server_name: meedjum.test      
           root: /var/www/html/meedjum/docroot   
-          php_version: 7.0
+          php_version: 7.0  
+      panalign:
+        file_name: panalign.conf 
+        template_name: template-drupal8.conf.j2
+        template_params:  
+          ssl_certificate: /etc/ssl/certs/ssl-cert-snakeoil.pem
+          ssl_certificate_key: /etc/ssl/private/ssl-cert-snakeoil.key
+          port: "443 ssl"
+          server_name: panalign.test      
+          root: /var/www/html/panalign/docroot   
+          php_version: 7.0          
           
     vagrant_synced_folders:
       - local_path: /Users/nigel/Projects/VHosts
@@ -95,6 +105,8 @@ You should then add a hostname. I've called mine *nigel-dev-box*.
 
 I then define two virtual hosts, named *web1* and *meedjum* respectively. 
 *file_name* refers to the file that hold the nginx configuration. The *template_name* can be any defined in `roles/TroodoNmike.nginx-conf/templates`. The *template_params* is a list of the token substitutions which are the *server_name*, *root*, and *php_version*.
+
+Note that my third virtual host is using ssl and I have configured it to use the generated snakeoil certificate that is installed during the Ubuntu installation process.
 
 Finally the synchronise folders must be defined. Ensure you stick to the convention above. The values are self explanatory and they are an array so multiple values can be defined. 
 
