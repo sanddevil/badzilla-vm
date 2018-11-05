@@ -83,8 +83,13 @@
           <tbody>
               {%- for hosts in vhosts.itervalues() -%}
                 {%- for host in hosts.itervalues() -%}
-                  {% if host.root is defined -%}
-                    {{ printSite(host.server_name, host.root, host.php_version) }}
+                  {%- if host.root is defined -%}
+                    {% if host.php_version is defined -%}
+                        {%- set php = host.php_version -%}
+                    {%- else -%}
+                        {%- set php = '{static}' -%}
+                    {%- endif -%}
+                    {{ printSite(host.server_name, host.root, php ) }}
                   {%- endif -%}
                 {%- endfor -%}
               {%- endfor -%}
