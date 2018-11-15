@@ -33,6 +33,8 @@ BadzillaVM installs to a Ubuntu 16.04LTS virtual machine. The build contains:
 * NodeJS
 * XHPRof
 * XDebug
+* Elasticsearch
+* Kibana
 
 This is a useful toolset for building professional standard Drupal websites. 
 
