@@ -99,6 +99,7 @@
 
     # Elasticsearch etc
     - role: geerlingguy.elasticsearch
+    - role: geerlingguy.kibana
 
     # Pretty logs - this needs chmod 777 in install directory
     - role: geerlingguy.pimpmylog
