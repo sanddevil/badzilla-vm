@@ -97,6 +97,9 @@
     - role: geerlingguy.java
     - role: geerlingguy.jenkins
 
+    # Elasticsearch etc
+    - role: geerlingguy.elasticsearch
+
     # Pretty logs - this needs chmod 777 in install directory
     - role: geerlingguy.pimpmylog
       pimpmylog_install_dir: /opt/pimpmylog
