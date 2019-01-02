@@ -121,6 +121,9 @@
     - role: igor_mukhin.bash_aliases
       sudo: false
 
+    # AWS Command Line
+    - role: ypsman.aws_cli
+
 
   tasks: 
 
