@@ -36,6 +36,7 @@ BadzillaVM installs to a Ubuntu 16.04LTS virtual machine. The build contains:
 * Elasticsearch
 * Kibana
 * AWS cli
+* Platform.sh cli
 
 This is a useful toolset for building professional standard Drupal websites. 
 

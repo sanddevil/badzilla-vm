@@ -124,6 +124,9 @@
     # AWS Command Line
     - role: ypsman.aws_cli
 
+    # Platform.sh CLI
+    - role: pixelart.platformsh-cli
+
 
   tasks: 
 

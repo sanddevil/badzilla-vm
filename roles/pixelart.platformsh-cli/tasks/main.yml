@@ -1,0 +1,48 @@
+---
+- name: Set php_executable variable to a default if not defined.
+  set_fact:
+    php_executable: php
+  when: php_executable is not defined
+
+- name: Check if platform.sh CLI is installed.
+  stat: "path={{ platformsh_path }}"
+  register: platformsh_bin
+
+- name: Download platform.sh CLI installer.
+  get_url:
+    url: https://platform.sh/cli/installer
+    dest: /tmp/platformsh-installer.php
+    mode: 0755
+  when: not platformsh_bin.stat.exists
+
+- name: Run platform.sh CLI installer.
+  command: >
+    {{ php_executable }} platformsh-installer.php
+    chdir=/tmp
+  when: not platformsh_bin.stat.exists
+
+- name: Move platform.sh CLI into globally-accessible location.
+  shell: >
+    mv /root/.platformsh/bin/platform {{ platformsh_path }}
+  when: not platformsh_bin.stat.exists
+
+- name: Set CLI config in /etc/profile.d/platformsh-cli.sh
+  template:
+    src: platform-cli.sh.j2
+    dest: /etc/profile.d/platformsh-cli.sh
+
+- name: Update platform.sh CLI to latest version (if configured).
+  shell: >
+    {{ php_executable }} {{ platformsh_path }} self-update
+  register: platformsh_update
+  failed_when: platformsh_update.rc != 0 and platformsh_update.rc != 1
+  changed_when: platformsh_update.rc == 0
+  when: platformsh_keep_updated
+
+- name: Move platform.sh CLI shell config into defined path
+  shell: >
+    mv /root/.platformsh/shell-config.rc {{ platformsh_shell_config_path }}/platformsh-cli.sh
+  when: platformsh_shell_config_path and (not platformsh_bin.stat.exists or platformsh_update == 0)
+
+- name: Remove temporary platform.sh CLI config directory
+  file: path=/root/.platformsh state=absent
