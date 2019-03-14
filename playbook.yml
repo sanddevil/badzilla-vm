@@ -183,4 +183,8 @@
         - php7.1-fpm
         - php7.2-fpm
 
+    - name: Update platform.sh to get the latest version.
+      shell: platform self:update
+
+
 
