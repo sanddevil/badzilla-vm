@@ -21,7 +21,7 @@
 
   roles:
 
-    - role: Oefenweb.php-cli-ondrej
+    - role: oefenweb.php_cli_ondrej
       php_cli_ondrej_version: 7.2
       php_cli_ondrej_update_alternatives: true
       php_cli_ondrej_mods_present:
@@ -40,7 +40,15 @@
         -  php7.2-ssh2
         -  php7.2-bcmath 
 
-    - role: Oefenweb.php-cli-ondrej
+    - role: oefenweb.php_cli_ondrej
+      php_cli_ondrej_version: 7.3
+      php_cli_ondrej_install:
+        -  php7.1-xdebug   
+        -  php7.1-fpm
+        -  php7.1-ssh2
+        -  php7.1-bcmath 
+
+    - role: oefenweb.php_cli_ondrej
       php_cli_ondrej_version: 7.1
       php_cli_ondrej_install:
         -  php7.1-xdebug   
@@ -48,22 +56,13 @@
         -  php7.1-ssh2
         -  php7.1-bcmath 
 
-    - role: Oefenweb.php-cli-ondrej
+    - role: oefenweb.php_cli_ondrej
       php_cli_ondrej_version: 7.0
       php_cli_ondrej_install:
         -  php7.0-xdebug    
         -  php7.0-fpm
         -  php7.0-ssh2 
         -  php7.0-bcmath 
-
-    - role: Oefenweb.php-cli-ondrej
-      php_cli_ondrej_version: 5.6
-      php_cli_ondrej_install:
-        -  php5.6-xdebug
-        -  php5.6-xhprof        
-        -  php5.6-fpm
-        -  php5.6-ssh2
-        -  php5.6-bcmath 
 
 
     - role: geerlingguy.nginx
