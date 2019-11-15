@@ -43,10 +43,20 @@
     - role: oefenweb.php_cli_ondrej
       php_cli_ondrej_version: 7.3
       php_cli_ondrej_install:
-        -  php7.1-xdebug   
-        -  php7.1-fpm
-        -  php7.1-ssh2
-        -  php7.1-bcmath 
+        -  php7.3-xdebug   
+        -  php7.3-fpm
+        -  php7.3-ssh2
+        -  php7.3-bcmath 
+      php_cli_ondrej_mods_present:
+        - name: json
+        - name: xml
+        - name: readline
+        - name: mysql
+        - name: memcached
+        - name: msgpack
+        - name: mbstring
+        - name: gd
+        - name: curl
 
     - role: oefenweb.php_cli_ondrej
       php_cli_ondrej_version: 7.1
