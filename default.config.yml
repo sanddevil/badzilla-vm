@@ -20,7 +20,7 @@
 
 
 # Available `vagrant_box` values include:
-vagrant_box: geerlingguy/ubuntu1604
+vagrant_box: geerlingguy/ubuntu1804
 
 vagrant_user: vagrant
 vagrant_synced_folder_default_type: nfs

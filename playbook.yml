@@ -187,10 +187,10 @@
         state: restarted
       loop:
         - nginx
-        - php5.6-fpm
         - php7.0-fpm
         - php7.1-fpm
         - php7.2-fpm
+        - php7.3-fpm
 
     - name: Update platform.sh to get the latest version.
       shell: platform self:update
