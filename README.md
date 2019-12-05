@@ -8,7 +8,7 @@ BadzillaVM is significantly pared down from DrupalVM, and as such it isn't as fe
 
 It offers the ability to run four different version of PHP (web) simmultaneously. In addition, there is a simple mechanism to switch between PHP (cli) versions on the command line. 
 
-Currently, PHP 5.6, 7.0, 7.1 and 7.2 are supported. 
+Currently, PHP 7.0, 7.1, 7.2 and 7.3 are supported. 
 
 This means that BadzillaVM is useful for agencies that perhaps have multiple clients running Drupal builds on differing versions of PHP. It is a breeze with BadzillaVM to configure multiple virtual hosts, each of which can be assigned any of the available versions of PHP.
 
@@ -19,7 +19,7 @@ BadzillaVM is a simple VM with lightweight functionality. It isn't intended to s
 BadzillaVM installs to a Ubuntu 16.04LTS virtual machine. The build contains:
 
 * nginx
-* PHP 5.6, 7.0, 7.1, 7.2
+* PHP 7.0, 7.1, 7.2, 7.3
 * MariaDB Server and Client
 * Memcached
 * Drush Loader
@@ -78,7 +78,7 @@ A typical `config.yml` configuration will look similar to this:
         template_params:
           server_name: web1.test      
           root: /var/www/html/web1    
-          php_version: 5.6
+          php_version: 7.3
       meedjum:
         file_name: meedjum.conf 
         template_name: template-drupal8.conf.j2
