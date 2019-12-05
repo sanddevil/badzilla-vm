@@ -131,5 +131,5 @@ This project is licensed under the MIT open source license.
 [Jeff Geerling](https://www.jeffgeerling.com/)'s Drupal VM was both the inspiration and the starting point for this project. Huge thanks to the incredible work Jeff has done. His amazing book led me to try my own VM build. Please check his book out: [Ansible for DevOps](https://www.ansiblefordevops.com/).
 
 ## About the Author
-[Badzilla (Nigel Milligan)](http://badzilla.co.uk) is a London UK based Freelance Drupal Architect and Consultant and can be contacted via LinkedIn. 
+[Badzilla (Nigel Milligan)](http://badzilla.co.uk) is a London UK based Freelance DevOps Drupal Architect / Engineer and Consultant and can be contacted via LinkedIn. 
 
