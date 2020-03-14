@@ -136,6 +136,9 @@
     # Platform.sh CLI
     - role: pixelart.platformsh-cli
 
+    # Phing
+    - role: devsoul.phing
+
 
   tasks: 
 
