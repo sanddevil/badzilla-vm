@@ -5,7 +5,7 @@
   with_dict: "{{ nginx_conf_sites }}"
 
 - name: htpasswd requirement
-  apt: "pkg=python-passlib state=installed"
+  apt: "pkg=python-passlib state=present"
 
 - htpasswd: path={{item.value.template_params.basic_auth.file_path}} name={{item.value.template_params.basic_auth.username}} password={{item.value.template_params.basic_auth.password}} owner=root group=root mode=0644
   with_dict: "{{ nginx_conf_sites }}"
