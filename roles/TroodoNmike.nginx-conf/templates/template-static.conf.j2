@@ -21,7 +21,18 @@ server {
         location / {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
-                try_files $uri $uri/ =404;
+                try_files $uri $uri/;
+        }
+
+        # Fighting with Styles? This little gem is amazing.
+        location ~ ^/sites/.*/files/styles/ { # For Drupal >= 7
+            try_files $uri @rewrite;
+        }
+
+        location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+            try_files $uri @rewrite;
+            expires max;
+            log_not_found off;
         }
 
         # deny access to .htaccess files, if Apache's document root
